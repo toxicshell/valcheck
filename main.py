@@ -19,20 +19,21 @@ class bruter():
         self.proxies = self.load_proxies(proxies_path)
         self.show = show
     def load_combo(self, path):
-        print(f"[~] {CYAN}Loading combo..{DEFAULT}\n")
         try:
             with open(path, 'r') as r:
                 combo = [c.strip().split(':') for c in r.readlines()]
+                print(f"[+] {YELLOW}Combo loaded successfully!{DEFAULT}")
                 return combo
         except FileNotFoundError:
             print(f'[!] Could not find : {RED}{path}{DEFAULT}')
             exit()
         
     def load_proxies(self, path):
-        print(f"[~] {CYAN}Loading proxies..{DEFAULT}")
+        
         try:
             with open(path, 'r') as r:
                 proxies = [p.strip() for p in r.readlines()]
+                print(f"[+] {YELLOW}Proxies loaded successfully!{DEFAULT}\n")
                 return proxies
         except FileNotFoundError:
             print(f"[!] Could not find : {RED}{path}{DEFAULT}")
@@ -79,9 +80,9 @@ class bruter():
             except requests.exceptions.ConnectTimeout:
                 pass
             except requests.exceptions.ProxyError:
-                pass
+                pass 
             except requests.exceptions.InvalidProxyURL:
-                pass
+                pass 
             except Exception as error:
                 print(f"[!] ERROR : {RED}{error}{DEFAULT}")
 
@@ -107,7 +108,7 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--combo', help="path to the combo file.")
     parser.add_argument('-p', '--proxies', help="path to the proxies file.")
     parser.add_argument('-t', '--threads', help="Number of threads to use (default=2)", default=2)
-    parser.add_argument('-s', '--show', help="Print Incorrect combo on the screen.", action="store_true")
+    parser.add_argument('-s', '--show', help="only print correct combo on the screen.", action="store_false")
     args = parser.parse_args()
 
     if not args.combo or not args.proxies:
