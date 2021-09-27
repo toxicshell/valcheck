@@ -117,4 +117,5 @@ if __name__ == "__main__":
     
     print(f"[~]{CYAN} Be patient as there's tons of proxies that don't work.{DEFAULT}\n")
     bruterObj = bruter(args.combo, args.proxies, args.threads, args.show)
+    print(f"[~]{CYAN} Cracking...{DEFAULT}\n")
     bruterObj.main()
